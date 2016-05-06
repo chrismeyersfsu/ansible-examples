@@ -1,0 +1,10 @@
+---
+- hosts: all
+  gather_facts: false
+  tasks:
+    - name: Wait for SSH to start
+      wait_for:
+        host: "localhost"
+        port: 22
+        timeout: 300
+      delegate_to: localhost

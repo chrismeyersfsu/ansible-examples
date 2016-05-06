@@ -1,0 +1,24 @@
+- hosts: localhost
+  roles:
+    - role: provision_docker
+      provision_docker_inventory_group: "{{ groups['docker'] }}"
+
+- hosts: docker
+  tasks:
+    - debug: msg="{{ ansible_ssh_host }}"
+
+- hosts: localhost
+  tasks:
+    - add_host:
+        name: "fake{{ item }}"
+        ansible_ssh_host: "{{ hostvars['host1']['ansible_ssh_host'] }}"
+        ansible_ssh_user: "{{ hostvars['host1']['ansible_ssh_user'] }}"
+        ansible_ssh_pass: "{{ hostvars['host1']['ansible_ssh_pass'] }}"
+        groups: fakes
+      with_sequence: count=300
+ 
+- hosts: fakes
+  gather_facts: false
+  tasks:
+    - debug: msg="hello world" 
+    - shell: "echo hello"

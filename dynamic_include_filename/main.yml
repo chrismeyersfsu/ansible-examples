@@ -1,0 +1,5 @@
+- hosts: all
+  vars:
+    include_file: include_me.yml
+  tasks:
+    - include: "{{ include_file }}"

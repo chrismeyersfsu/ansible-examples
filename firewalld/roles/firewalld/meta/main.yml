@@ -1,0 +1,17 @@
+---
+galaxy_info:
+  author: Marcel Nijenhof
+  description: A module to configure firewalld through variables
+  license: BSD
+  min_ansible_version: 1.4
+  platforms:
+  - name: EL
+    versions:
+    - 7
+  - name: Fedora
+    versions:
+    - 21
+    - 22
+  categories:
+  - networking
+dependencies: []

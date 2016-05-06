@@ -1,0 +1,13 @@
+- hosts: aws
+  gather_facts: false
+  remote_user: ubuntu
+  become_method: sudo
+  become_user: root
+  become: true
+  tasks:
+    - shell: reboot
+      async: 0
+      poll: 0
+      sudo: true
+    - local_action: wait_for port="22" host="54.236.200.87" state="started"
+      become: false

@@ -1,0 +1,15 @@
+- hosts: localhost
+  gather_facts: false
+  roles:
+    - role: foo
+      potato: "i'm a potato"
+  tasks:
+    - debug: msg="{{ foo_port }}"
+    - set_fact:
+        foo_port: 1234
+    - debug: msg="{{ foo_host }}"
+    - debug: msg="{{ foo_port }}"
+    - debug: msg="{{ foo_bar }}"
+    - debug: msg="{{ i_am_in_foo_vars_main_yml }}"
+    - debug: msg="{{ foo_new_var }}"
+    - debug: msg="{{ potato|default('potato not defined') }}"

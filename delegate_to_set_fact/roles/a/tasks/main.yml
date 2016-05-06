@@ -1,0 +1,6 @@
+---
+- set_fact:
+    ansible_ssh_connection: 'local'
+    variable: "{{ item }}"
+  delegate_to: "{{ item }}"
+  with_items: "{{ inventory_group }}"

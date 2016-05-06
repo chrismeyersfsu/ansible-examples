@@ -1,0 +1,3 @@
+---
+# tasks file for a
+- debug: msg="Variable foo {{ foo }}"

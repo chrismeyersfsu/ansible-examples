@@ -1,0 +1,14 @@
+---
+- hosts: localhost
+  roles:
+    - name: a
+      inventory_group: "{{ groups['groupa'] }}"
+  tasks:
+    - debug: msg="{{ hostvars['a'] }}"
+
+- hosts: groupa
+  connection: local
+  gather_facts: false
+  tasks:
+    - debug: msg="{{ hostvars[inventory_hostname] }}"
+    - debug: msg="{{ variable }}"

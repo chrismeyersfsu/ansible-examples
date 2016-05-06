@@ -1,0 +1,9 @@
+- hosts: all
+  connection: local
+  gather_facts: false
+  vars:
+    pattern: "cmeyers-.*"
+  tasks:
+    - name: delete it
+      command: 'echo "hello"'
+      when: inventory_hostname | match(pattern)

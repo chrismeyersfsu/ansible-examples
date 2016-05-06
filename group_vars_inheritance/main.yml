@@ -1,0 +1,5 @@
+---
+- hosts: group1
+  tasks:
+    - debug: msg="{{ hostvars[inventory_hostname]['foo'] }}"
+    - debug: msg="{{ hostvars[inventory_hostname]['hello'] }}"

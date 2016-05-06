@@ -1,0 +1,5 @@
+[mygroup]
+local1 ip_fake=local1.myhost.com
+local2 ip_fake=local2.myhost.com
+local3 ip_fake=local3.myhost.com
+

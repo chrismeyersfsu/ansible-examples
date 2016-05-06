@@ -1,0 +1,22 @@
+---
+foo: 'hello'
+bar: 'world'
+foobar: ''
+test_meta_required_vars:
+  - foo
+  - bar
+
+test_meta_defined_ok_required_vars:
+  - foo
+  - bar
+  - foobar
+
+test_meta_defined_fail_required_vars:
+  - foo
+  - bar
+  - baz
+
+test_meta_blank_fail_required_vars:
+  - foo
+  - bar
+  - foobar

@@ -1,0 +1,10 @@
+---
+# https://github.com/ansible/ansible/issues/15694
+- hosts: localhost
+  tasks:
+    - set_fact:
+        foo: "bar"
+      delegate_to: "{{ item }}"
+      delegate_facts: true
+      with_items:
+        - host1

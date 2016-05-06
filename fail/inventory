@@ -1,0 +1,7 @@
+one ansible_connection=local
+two ansible_connection=local
+three ansible_connection=local
+
+
+[fail_ignore_errors]
+localhost ansible_connection=local

@@ -1,0 +1,8 @@
+---
+- hosts: all
+  gather_facts: false
+  vars:
+    hello: "Hello World"
+  tasks:
+    - debug: msg="Hello world {{ hello }}"
+      with_sequence: count=1000

@@ -1,0 +1,11 @@
+- hosts: all
+  gather_facts: false
+  vars:
+    listy:
+      - one
+      - two
+      - three
+  tasks:
+    - set_fact:
+        ansible_connection: local
+    - shell: "echo hello"

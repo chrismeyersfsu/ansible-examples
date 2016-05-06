@@ -1,0 +1,9 @@
+- hosts: localhost
+  vars:
+    list:
+      - a
+      - b
+      - c
+  tasks:
+    - include: stuff.yml
+      with_items: list

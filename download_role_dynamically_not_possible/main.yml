@@ -1,0 +1,9 @@
+- hosts: local
+  gather_facts: false
+  pre_tasks:
+    - shell: "rm -rf roles/required_vars"
+    - shell: "ansible-galaxy install -r {{ playbook_dir }}/requirements.yml -p {{ playbook_dir }}/roles/ --force"
+    #- shell: "mv {{ playbook_dir }}/roles {{ playbook_dir }}/roles.bak || true"
+    #- shell: "mv {{ playbook_dir }}/roles.tmp {{ playbook_dir }}/roles"
+  roles:
+    - { role: required_vars }

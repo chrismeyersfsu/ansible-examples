@@ -1,0 +1,15 @@
+- hosts: mygroup
+  connection: local
+  gather_facts: true
+  vars:
+    ip_fakes: []
+  tasks:
+    - debug: msg="{{ item }}"
+      run_once: true
+      with_items: groups['mygroup']
+
+    - set_fact:
+        ip_fakes: "{{ ip_fakes + [hostvars[item]['ip_fake']] }}"
+      with_items: groups['mygroup']
+
+    - debug: var=ip_fakes

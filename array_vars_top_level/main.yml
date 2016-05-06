@@ -1,0 +1,12 @@
+---
+- hosts: all
+  gather_facts: false
+  vars:
+    foo: bar
+  tasks:
+    - name: Debug me
+      debug: msg="{{ item }}"
+      with_items:
+        - one-{{ foo }}
+        - two-{{ foo }}
+

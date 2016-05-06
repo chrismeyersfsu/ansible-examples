@@ -1,0 +1,12 @@
+- hosts: all
+  gather_facts: false
+  tasks: 
+    - name: Add 1 host to group1
+      group_by:
+        key: 'group1'
+
+- hosts: all
+  tasks:
+    - fail:
+        msg: "Expected group1 to have length of 1 but has length {{ groups['group1']|length }}. group1 {{ groups['group1'] }}. All groups {{ groups }}. Group that this host belongs to {{ group_names }}"
+      when: groups['group1']|length != 1

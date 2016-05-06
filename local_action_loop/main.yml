@@ -1,0 +1,12 @@
+- hosts: all
+  gather_facts: false
+  vars:
+    listy:
+      - one
+      - two
+      - three
+  tasks:
+    - local_action:
+        module: "shell echo hello"
+      when: item == inventory_hostname
+      with_items: listy

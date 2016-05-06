@@ -1,0 +1,4 @@
+- name: 'Ensure variables not blank ONLY'
+  fail: 'msg="Variable {{item}} is blank"'
+  when: item == ''
+  with_items: '{{ required_vars_only|default([]) }}'

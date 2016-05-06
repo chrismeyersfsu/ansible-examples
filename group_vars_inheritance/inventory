@@ -1,0 +1,12 @@
+localhost1 ansible_connection=local
+localhost2 ansible_connection=local
+localhost3 ansible_connection=local
+
+[group1]
+localhost1
+localhost2
+localhost3
+
+[group1:vars]
+foo=bar
+hello=world

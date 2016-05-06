@@ -1,0 +1,6 @@
+dependencies:
+  - { role: role-required_vars, required_vars: test_meta_required_vars }
+  - { role: role-required_vars, required_vars_defined: test_meta_defined_ok_required_vars }
+
+  # TODO: Figure out how to test the failure case
+  #- { role: role-required_vars, required_vars_defined: test_meta_defined_fail_required_vars }

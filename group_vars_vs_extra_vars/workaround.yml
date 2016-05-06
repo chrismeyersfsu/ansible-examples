@@ -1,0 +1,7 @@
+---
+- hosts: all
+  gather_facts: false
+  tasks:
+    - debug: msg="{{ foo }}"
+    - debug: msg="{{ hostvars[inventory_hostname]['foo'] }}"
+    - debug: msg="{{ foo|default(hostvars[inventory_hostname]['foo']) }}"

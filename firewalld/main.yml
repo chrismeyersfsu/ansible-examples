@@ -1,0 +1,23 @@
+---
+- hosts: all
+  vars:
+    inventory:
+      - name: firewalld_one
+        image: "chrismeyers/centos7"
+  roles:
+    - { role: provision_docker, provision_docker_company: 'foo', provision_docker_privileged: "{{ true }}", provision_docker_inventory: "{{ inventory }}" }
+
+- hosts: docker_containers
+  roles:
+    - role: firewalld
+      firewalld_allow_ports:
+        - port: 27701/tcp
+        - port: 5000/tcp
+        - port: 8080/tcp
+        - port: 80/tcp
+        - port: 8774/tcp
+        - port: 35357/tcp
+        - port: 9696/tcp
+        - port: 9292/tcp
+      tags: 'firewalld'
+    

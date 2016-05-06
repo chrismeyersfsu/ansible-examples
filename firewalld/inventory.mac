@@ -1,0 +1,4 @@
+localhost ansible_connection=local ansible_python_interpreter=/Users/meyers/ansible/tmp/docker/.env/bin/python
+
+[all:vars]
+provision_docker_use_tls=encrypt

@@ -1,0 +1,40 @@
+
+PLAY [localish] ****************************************************************
+
+TASK [setup] *******************************************************************
+ok: [local0]
+ok: [local1]
+ok: [local2]
+ok: [local3]
+ok: [local4]
+ok: [local9]
+ok: [local5]
+ok: [local6]
+ok: [local7]
+ok: [local8]
+
+TASK [command] *****************************************************************
+changed: [local1]
+changed: [local2]
+changed: [local0]
+changed: [local3]
+changed: [local4]
+changed: [local5]
+changed: [local6]
+changed: [local8]
+changed: [local7]
+changed: [local9]
+
+PLAY RECAP *********************************************************************
+local0                     : ok=2    changed=1    unreachable=0    failed=0   
+local1                     : ok=2    changed=1    unreachable=0    failed=0   
+local2                     : ok=2    changed=1    unreachable=0    failed=0   
+local3                     : ok=2    changed=1    unreachable=0    failed=0   
+local4                     : ok=2    changed=1    unreachable=0    failed=0   
+local5                     : ok=2    changed=1    unreachable=0    failed=0   
+local6                     : ok=2    changed=1    unreachable=0    failed=0   
+local7                     : ok=2    changed=1    unreachable=0    failed=0   
+local8                     : ok=2    changed=1    unreachable=0    failed=0   
+local9                     : ok=2    changed=1    unreachable=0    failed=0   
+
+nohup: ANSIBLE_DEBUG=TRUE: No such file or directory

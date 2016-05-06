@@ -1,0 +1,17 @@
+- hosts: all
+  tasks:
+    - name: Create dynamic inventory
+      add_host:
+        hostname: "{{ item['hostname'] }}"
+        groups: dynamic_inventory
+      with_items:
+        - hostname: foo1
+        - hostname: foo2
+        - hostname: foo3
+        
+
+- hosts: dynamic_inventory
+  connection: local
+  tasks:
+    - name: Echoing
+      command: "echo {{ inventory_hostname }}"

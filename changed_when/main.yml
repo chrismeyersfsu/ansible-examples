@@ -1,0 +1,21 @@
+- hosts: localhost
+  tasks:
+    - shell: 'echo "hello world"'
+      register: result
+    
+    - debug: var=result
+
+    - debug: msg="changed"
+      changed_when: "result.changed == true"
+    
+    - debug: msg="not changed"
+      when: "result.changed != true"
+
+    - name: Stop MongoDB
+      service:
+        name: mongod
+        state: stopped
+        enabled: no
+      register: results
+
+    - debug: var=results

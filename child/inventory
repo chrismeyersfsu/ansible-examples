@@ -1,0 +1,24 @@
+[localish]
+local0 ansible_connection=local
+local1 ansible_connection=local
+local2 ansible_connection=local
+local3 ansible_connection=local
+local4 ansible_connection=local
+local5 ansible_connection=local
+local6 ansible_connection=local
+local7 ansible_connection=local
+local8 ansible_connection=local
+local9 ansible_connection=local
+
+[localgroup2]
+local0 ansible_connection=local
+
+[remotegroup]
+mjones-59d1dab2 ansible_ssh_user=cmeyers
+
+[remotegrouplarge]
+a1 ansible_ssh_host=mjones-59d1dab2 ansible_ssh_user=cmeyers
+a2 ansible_ssh_host=mjones-59d1dab2 ansible_ssh_user=cmeyers
+a3 ansible_ssh_host=mjones-59d1dab2 ansible_ssh_user=cmeyers
+a4 ansible_ssh_host=mjones-59d1dab2 ansible_ssh_user=cmeyers
+a5 ansible_ssh_host=mjones-59d1dab2 ansible_ssh_user=cmeyers

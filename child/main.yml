@@ -1,0 +1,5 @@
+- hosts: localhost
+  tasks:
+    #- shell: sleep 20
+    - block_signals:
+        seconds: 20

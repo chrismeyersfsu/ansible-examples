@@ -1,0 +1,3 @@
+---
+# tasks file for test
+- debug: var=test_foo

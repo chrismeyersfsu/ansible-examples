@@ -1,0 +1,3 @@
+[all]
+one ansible_ssh_host=foo
+two ansible_ssh_host=bar

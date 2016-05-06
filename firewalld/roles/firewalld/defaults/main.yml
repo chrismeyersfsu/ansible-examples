@@ -1,0 +1,6 @@
+---
+#
+# Default is a empty list!
+#
+firewalld_allow_services: []
+firewalld_allow_ports: []

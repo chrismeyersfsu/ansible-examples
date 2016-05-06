@@ -1,0 +1,5 @@
+- hosts: localhost
+  tasks:
+    - shell: python -c "import instagram"
+      environment:
+        PYTHONPATH: "/Users/meyers/ansible/examples/python_deps/venv/lib/python2.7/site-packages"

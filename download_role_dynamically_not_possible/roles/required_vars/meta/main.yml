@@ -1,0 +1,68 @@
+---
+galaxy_info:
+  author: Chris Meyers
+  description: Ensure required variables are defined and or have values
+  company: Ansible
+  # Some suggested licenses:
+  # - BSD (default)
+  # - MIT
+  # - GPLv2
+  # - GPLv3
+  # - Apache
+  # - CC-BY
+  license: license (GPLv2, CC-BY, etc)
+  min_ansible_version: 1.9.2
+  platforms:
+  - name: EL
+    versions:
+    - all
+  - name: GenericUNIX
+    versions:
+    - all
+  - name: Fedora
+    versions:
+    - all
+  - name: SmartOS
+    versions:
+    - all
+  - name: opensuse
+    versions:
+    - all
+  - name: Amazon
+    versions:
+    - all
+  - name: GenericBSD
+    versions:
+    - all
+  - name: FreeBSD
+    versions:
+    - all
+  - name: Ubuntu
+    versions:
+    - all
+  - name: SLES
+    versions:
+    - all
+  - name: GenericLinux
+    versions:
+    - all
+  - name: Debian
+    versions:
+    - all
+  categories:
+  - cloud
+  #- cloud:ec2
+  #- cloud:gce
+  #- cloud:rax
+  #- clustering
+  #- database
+  #- database:nosql
+  #- database:sql
+  - development
+  #- monitoring
+  #- networking
+  #- packaging
+  #- system
+  #- web
+dependencies: []
+  

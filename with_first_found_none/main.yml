@@ -1,0 +1,13 @@
+---
+- hosts: all
+  gather_facts: false
+  tasks:
+    - include_vars: 
+      with_first_found:
+        - files:
+            - 'one_does_not_exist.yml'
+            - 'two_does_not_exist.yml'
+            - 'three.yml'
+          paths: 'vars'
+
+    - debug: var=foo

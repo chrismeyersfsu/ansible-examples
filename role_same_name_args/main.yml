@@ -1,0 +1,12 @@
+# FAILS:
+# * test_foo defined as inventory variable
+# * test_foo is defined ONLY in role/test/default/main.yml
+#
+# SUCCESS:
+# * test_foo defined in vars:
+# * test_foo defined in -e
+- hosts: all
+  gather_facts: false
+  roles:
+    - role: test
+      test_foo: "{{ test_foo }}"

@@ -1,0 +1,13 @@
+- hosts: all
+  gather_facts: false
+  tasks:
+    - local_action:
+        module: add_host
+        name: "{{ item }}"
+        ansible_ssh_host: "127.0.0.1"
+        ansible_ssh_user: meyers
+        ansible_ssh_pass: "guessgerber"
+        ansible_ssh_port: 22
+      with_items: play_hosts
+
+    - command: "echo hello world"

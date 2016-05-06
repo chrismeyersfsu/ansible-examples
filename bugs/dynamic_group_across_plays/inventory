@@ -1,0 +1,5 @@
+localhost ansible_connection=local
+
+[group1]
+
+[group2]

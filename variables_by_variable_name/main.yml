@@ -1,0 +1,7 @@
+- hosts: all
+  gather_facts: false
+  vars:
+    foo: "bar"
+    foobar: "foo"
+  tasks:
+    - debug: var="{{ foobar }}"

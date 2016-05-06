@@ -1,0 +1,21 @@
+- hosts: local
+  connection: local
+  gather_facts: false
+  vars:
+    mylist1:
+      - listy:
+         - 1
+         - 2
+         - 3
+      - listy:
+         - 4
+         - 5
+         - 6
+    mylist3: []
+  tasks:
+    - set_fact: mylist2="{{ mylist1 | map(attribute='listy') | list }}"
+
+    - set_fact: mylist3="{{ item }}"
+      with_flattened: mylist2
+
+    - debug: msg="{{ mylist3 }}"

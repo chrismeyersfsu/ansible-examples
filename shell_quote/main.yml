@@ -1,0 +1,10 @@
+- hosts: all
+  #connection: local
+  gather_facts: false
+  vars:
+    test_stuff: '--hello-you "you,and,me"'
+  tasks:
+    #- shell: "./run.sh"
+    - command: "echo $TEST_STUFF"
+      environment:
+        TEST_STUFF: "{{ test_stuff }}"

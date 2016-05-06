@@ -1,0 +1,13 @@
+---
+- hosts: all
+  gather_facts: false
+  vars:
+    servers:
+      integ:
+        name: hey
+      production:
+      mysql:
+    
+  tasks:
+    - debug: msg="{{ item.key }}"
+      with_dict: "{{ servers }}"

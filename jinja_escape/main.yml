@@ -1,0 +1,14 @@
+- hosts: local
+  gather_facts: false
+  tasks:
+    - set_fact:
+        fancy_str: "{{ '{{.foo.}}' }}"
+        fancy_dict:
+          fancy_str: "{{ '{{.foo.}}' }}"
+          not_fancy_str: "hello world"
+    #- debug: var=fancy_str
+    #- debug: var=fancy_dict['not_fancy_str']
+
+    - shell: "echo {{ '{{.foo.}}' }} | wc"
+      register: result
+    - debug: var=result.stdout_lines

@@ -1,0 +1,10 @@
+- name: yeah
+  hosts: local
+  connection: local
+  vars:
+    no_value: ""
+    some_value: "hello world"
+  tasks:
+    - debug: msg="{{ not_exists|default(some_value) }}"
+    - debug: msg="{{ not_exists|default(no_value)|default(some_value) }}"
+    - debug: msg="{{ not_exists|default(also_doesnt_exist)|default(some_value) }}"

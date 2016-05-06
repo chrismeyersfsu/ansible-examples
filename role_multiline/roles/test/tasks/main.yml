@@ -1,0 +1,2 @@
+- name: echo
+  debug: var=hello

@@ -1,0 +1,5 @@
+- name: 'Ensure variables defined ONLY'
+  fail: 'msg="Variable {{item}} not defined"'
+  when: '{{ item }} is not defined'
+  with_items: '{{ required_vars_defined|default([]) }}'
+

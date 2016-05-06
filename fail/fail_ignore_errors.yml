@@ -1,0 +1,12 @@
+- hosts: fail_ignore_errors
+  gather_facts: false
+  vars:
+    ignore_errors_custom: false
+  tasks:
+    - fail: msg="I am a failure"
+      ignore_errors: true
+
+    - fail: msg="I may fail"
+      ignore_errors: "{{ ignore_errors_custom }}"
+
+    - command: ping

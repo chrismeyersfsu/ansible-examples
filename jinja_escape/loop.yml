@@ -1,0 +1,10 @@
+- hosts: local
+  gather_facts: false
+  vars:
+    my_list:
+      - one
+      - two
+  tasks:
+    - debug: msg="{{ 6 + item.0 }}
+      with_indexed_items: my_list
+    #- command: "echo -e {{ '{{.foo.}}\\nbar' }}"
