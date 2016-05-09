@@ -1,0 +1,4 @@
+---
+# tasks file for test
+- debug: msg="Output value of 'test_foo_a' if it's defined, else 'static message, test_foo_a not defined' - {{ test_foo_a|default('static message, test_foo_a not defined') }}"
+- debug: msg="Output value of 'test_foo_b' if it's defined, else 'static message, test_foo_b not defined' - {{ test_foo_b|default('static message, test_foo_b not defined') }}"

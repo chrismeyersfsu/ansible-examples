@@ -1,0 +1,28 @@
+- name: "Demonstrate that we can reference a roles/test/defaults/main.yml variable during a role invocation"
+  hosts: localhost
+  gather_facts: false
+  roles:
+    - role: test
+      test_foo_b: "{{ test_foo_a }} <--- from 'test_foo_a' roles/test/defaults/main.yml"
+
+- name: "Demonstrates that variables defined in roles/test/defaults/main.yml don't live on across plays"
+  hosts: localhost
+  gather_facts: false
+  tasks:
+    - debug: msg="Role defined in defaults/main.yml DOES NOT live on past role invocation across plays ... {{ test_foo_a|default('variable is dead!') }}"
+
+- name: "Use set_fact to extend the life of a role variable"
+  hosts: localhost
+  gather_facts: false
+  roles:
+    - role: test
+  tasks:
+    - name: "Save roles/test/defaults/main.yml test_foo_a => foo_a"
+      set_fact:
+        foo_a: "{{ test_foo_a }}"
+
+- name: "Show that a set_fact fact can live on across a play"
+  hosts: localhost
+  gather_facts: false
+  tasks:
+    - debug: msg="foo_a should be hello - {{ foo_a }}"
