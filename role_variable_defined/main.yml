@@ -1,8 +1,0 @@
----
-- hosts: all
-  gather_facts: false
-  tasks:
-    - set_fact:
-        #a: "{{ who|default(a.b.c)|default('') }}"
-        a: "{{ who|default('') }}"
-     
