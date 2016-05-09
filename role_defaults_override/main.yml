@@ -1,6 +1,0 @@
----
-- hosts: all
-  gather_facts: false
-  roles:
-    - role: a
-      a_password: 'blah'
