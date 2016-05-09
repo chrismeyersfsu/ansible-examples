@@ -1,5 +1,0 @@
----
-# tasks file for foo
-- set_fact:
-    foo_new_var: 'The new var in town'
-- debug: var=i_am_in_bar_vars_main_yml
