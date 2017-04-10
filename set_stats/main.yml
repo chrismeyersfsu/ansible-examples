@@ -1,0 +1,11 @@
+- hosts: localhost
+  tasks:
+    - name: "Artifact integration test results to the web"
+      local_action: 'shell curl -F "file=@integration_results.txt" https://file.io'
+      register: result
+        
+    - name: "Artifact URL of test results to Tower Workflows"
+      set_stats: 
+        data:
+          integration_results_url:  "{{ (result.stdout|from_json).link }}"
+
