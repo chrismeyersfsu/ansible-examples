@@ -1,0 +1,2 @@
+- debug:
+    msg: "Echoing out egg_var, {{ egg_var }}"
