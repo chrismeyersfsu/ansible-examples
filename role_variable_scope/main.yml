@@ -1,0 +1,5 @@
+- hosts: localhost
+  roles:
+    - role: egg
+    - role: chicken
+      chicken_var: "{{ egg_var }}"

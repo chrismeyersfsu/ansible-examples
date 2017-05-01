@@ -1,0 +1,2 @@
+- debug:
+    msg: "Echoing out chicken_var, {{ chicken_var }}"

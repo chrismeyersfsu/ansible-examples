@@ -1,0 +1,13 @@
+- hosts: localhost
+  tasks:
+    - name: "Load chicken role variables"
+      include_role:
+        name: "chicken"
+        tasks_from: "nothing.yml"
+        private: False
+
+    - include_role:
+        name: "egg"
+      vars:
+        egg_var: "{{ chicken_var }}"
+        
