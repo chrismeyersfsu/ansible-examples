@@ -4,7 +4,11 @@
       include_role:
         name: "chicken"
         tasks_from: "nothing.yml"
+        defaults_from: "main.yml"
         private: False
+
+    - debug:
+        msg: "in main.yml chicken_var is, {{ chicken_var }}"
 
     - include_role:
         name: "egg"
