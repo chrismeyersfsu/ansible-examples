@@ -1,0 +1,7 @@
+[all]
+host1 myvar=i_am_host_1 system_id='host1-7571049d-1b94-47e0-b873-1d2911083467'
+host2 myvar=i_am_host_2 system_id='host2-8f07b7a5-5a7b-46a7-bdc2-172824b596d6'
+host3 myvar=i_am_host_3
+
+[all:vars]
+ansible_connection='local'

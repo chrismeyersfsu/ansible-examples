@@ -1,0 +1,17 @@
+- hosts: all
+  gather_facts: true
+  tasks:
+    #- slurp:
+    #    src: "/tmp/id"
+    #  register: system_id
+
+    - add_host:
+        name: "{{ item }}"
+        groups: "{{ hostvars[inventory_hostname]['system_id'] }}"
+      when: "{{ hostvars[item]['system_id'] is defined }}"
+      with_items: "{{ play_hosts }}"
+
+- hosts: host1-7571049d-1b94-47e0-b873-1d2911083467:host2-8f07b7a5-5a7b-46a7-bdc2-172824b596d6
+  tasks:
+    - debug:
+        msg: "hello world from {{ inventory_hostname }} with myvar={{ myvar }}"
