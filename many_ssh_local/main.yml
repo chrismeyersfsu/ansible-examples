@@ -1,0 +1,25 @@
+- hosts: localhost
+  vars:
+    host_count: 100
+    remote_user: "cmeyers"
+    remote_pass: "Ce4mwtFV5AhtXxuJ"
+    remote_addr: "localhost"
+  gather_facts: false
+  tasks:
+    - add_host:
+        name: "host{{ item }}"
+        ansible_ssh_user: "{{ remote_user }}"
+        ansible_ssh_pass: "{{ remote_pass }}"
+        groups: "dynamic"
+      with_sequence: count="{{ host_count }}"
+
+    - name: "Lay down /etc/hosts file"
+      template:
+        src: "files/hosts.j2"
+        dest: "/etc/hosts"
+      become: true
+
+- hosts: dynamic
+  gather_facts: true
+  tasks:
+    - shell: "touch /tmp/newfile"
