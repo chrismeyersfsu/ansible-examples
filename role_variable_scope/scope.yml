@@ -26,3 +26,21 @@
   gather_facts: false
   tasks:
     - debug: msg="foo_a should be hello - {{ foo_a }}"
+
+
+- name: "Call set_fact in a role, then access that variable in a tasks, after the role is called"
+  hosts: localhost
+  gather_facts: false
+  roles:
+    - role: set_fact_inside
+  tasks:
+    - debug:
+        msg: "set_fact_inside role calls set_fact on a previously non-existant variable, that variable is set_fact_inside_my_var='foobar' and the value is: {{ set_fact_inside_my_var }}"
+
+- name: "Facts set for the first time in roles live across plays"
+  hosts: localhost
+  gather_facts: false
+  tasks:
+    - debug:
+        msg: "set_fact_inside role calls set_fact on a previously non-existant variable, that variable is set_fact_inside_my_var='foobar' and the value is: {{ set_fact_inside_my_var }}"
+
