@@ -1,0 +1,5 @@
+- hosts: hostA
+  gather_facts: false
+  tasks:
+    - debug:
+        msg: "All the local /etc/ansible/facts.d/* are {{ hostvars['hostB']['ansible_local'] }}"
