@@ -4,3 +4,6 @@
     - debug:
         msg: "hello world"
 
+    - name: "Just do an ls"
+      shell: "ls"
+
