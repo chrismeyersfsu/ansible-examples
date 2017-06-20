@@ -42,15 +42,16 @@ class CacheModule(BaseCacheModule):
         return self._cache.get(key)
 
     def set(self, key, value):
-        print("Set called for {}".format(key))
+        print("Set called for {} value {}".format(key, value))
         self._cache[key] = value
 
     def keys(self):
         return self._cache.keys()
 
     def contains(self, key):
-        print("Contains called for key {}".format(key))
-        return key in self._cache
+        val = key in self._cache
+        print("Contains called for key {} val {}".format(key, val))
+        return val
 
     def delete(self, key):
         del self._cache[key]
