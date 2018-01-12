@@ -1,0 +1,37 @@
+- hosts: managed_nodes
+  gather_facts: false
+  tasks:
+    - name: "Install packages"
+      yum:
+        name: "{{ item }}"
+      with_items:
+        - "epel-release"
+        - "ssh-server"
+      become: true
+
+    - name: "Increase open file limit"
+      template:
+        src: "files/limits.conf.j2"
+        dest: "/etc/security/limits.conf"
+      become: true
+
+    - name: "Tweak sshd config"
+      lineinfile:
+        path: "/etc/ssh/sshd_config"
+        line: "{{ item.line }}"
+        regexp: "{{ item.regexp }}"
+      with_items:
+        - line: "MaxStartups 1000000"
+          regexp: "MaxStartups "
+        - line: "MaxSessions 1000000"
+          regexp: "MaxSessions "
+      become: true
+      register: result
+
+    - name: "Restart sshd"
+      service:
+        name: sshd
+        state: restarted
+      #when: result.changed
+      become: true
+
