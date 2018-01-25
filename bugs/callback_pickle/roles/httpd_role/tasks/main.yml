@@ -1,0 +1,6 @@
+---
+#- debug:
+#    msg: "I do nothing"
+
+- yum:
+    name: "httpd"
