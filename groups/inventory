@@ -1,0 +1,16 @@
+[tower]
+us1
+east1
+east2
+west1
+west2
+
+[instance_group_east]
+us1
+east1
+east2
+
+[instance_group_west]
+us1
+west1
+west2

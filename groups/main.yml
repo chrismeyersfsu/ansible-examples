@@ -1,0 +1,24 @@
+# Sandbox to play with how tower/awx can use the inventory instance group
+# toplogy specification and pass it to register_queue
+
+---
+- hosts: instance_group_*
+  connection: local
+  gather_facts: false
+  vars:
+    instance_groups:
+      - "instance_group_east"
+      - "instance_group_west"
+
+    instance_groups_short:
+      - "east"
+      - "west"
+      - "tower"
+
+  tasks:
+    - debug:
+        #msg: "hello {{ inventory_hostname }}"
+        msg: "I've got friends {{ item|regex_replace('^instance_group_','') }}: {{ ','.join(groups[item]) }}"
+      with_items: "{{ groups }}"
+      when: item.startswith('instance_group_') or item == 'tower'
+      run_once: True
