@@ -1,0 +1,20 @@
+---
+
+- name: 'Test playbook to sleep for a specified random interval'
+  hosts: all
+  gather_facts: false
+  vars:
+    sleep_min: 5
+    sleep_max: 30
+
+  tasks:
+    - name: Determine sleep interval
+      set_fact:
+          sleep_interval: '{{ sleep_max | random(sleep_min) }}'
+
+    - name: Print out sleep interval
+      debug:
+        msg: 'Will sleep for {{ sleep_interval }} seconds'
+
+    - name: sleep for a specified interval
+      command: sleep '{{ sleep_interval }}'
