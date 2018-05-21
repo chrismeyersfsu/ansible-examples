@@ -9,3 +9,11 @@ def get_or_create(obj, name='Default', **kwargs):
         print("Error, more than 1 results found for unique search.")
 
 
+def delete_all_jobs(v2):
+    while True:
+        jobs_req = v2.jobs.get(page_size=200)
+        if jobs_req['count'] == 0:
+            break
+        for j in jobs_req['results']:
+            j.delete()
+

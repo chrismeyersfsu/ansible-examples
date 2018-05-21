@@ -13,13 +13,15 @@ delete_all_jobs(v2)
 
 org = get_or_create(v2.organizations, name='cmurders murder inc.')
 inv = get_or_create(org.related.inventories, name='cmurders murdertown', organization=org)
-h = get_or_create(inv.related.hosts, name='cmurder', variables=host_vars, inventory=inv)
+
+for i in xrange(0, 100):
+    h = get_or_create(inv.related.hosts, name='high-capacity-host-{}'.format(i), variables=host_vars, inventory=inv)
 
 proj = get_or_create(v2.projects, name='Murder Tools', organization=org, scm_url='https://github.com/chrismeyersfsu/ansible-examples.git', wait=True)
 
-jt = get_or_create(v2.job_templates, name="Kill Number 1", organization=org, inventory=inv, project=proj, extra_vars=sleep_interval_vars, playbook='sleep.yml', allow_simultaneous=True)
+jt = get_or_create(v2.job_templates, name="High Capacity JT - 50 forks", organization=org, inventory=inv, project=proj, extra_vars=sleep_interval_vars, playbook='sleep.yml', allow_simultaneous=True, forks=50)
 
-wfjt = get_or_create(v2.workflow_job_templates, name="Mass Murder", organization=org)
+wfjt = get_or_create(v2.workflow_job_templates, name="High Capacity Workflow", organization=org)
 
 parallel_count = 100
 current_node_count = wfjt.related.workflow_nodes.get()['count']
@@ -28,8 +30,6 @@ if current_node_count < parallel_count:
         wfjt.related.workflow_nodes.post(dict(unified_job_template=jt.id))
 
 wfj = None
-#wfj = wfjt.launch().wait_until_completed()
-#print("Workflow job is {}".format(wfj.id if wfj else None))
 
 #org.delete()
 #jt.delete()
