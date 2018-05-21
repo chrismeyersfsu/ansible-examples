@@ -1,7 +1,7 @@
 import time
 import sys, os
 sys.path.append(os.path.join(os.getcwd(), '..', '..'))
-from utils import get_or_create, delete_all_jobs
+from utils import get_or_create, delete_all
 
 host_vars = """ansible_connection: local"""
 sleep_interval_vars = """---
@@ -9,7 +9,7 @@ sleep_min: 240
 sleep_max: 480
 """
 
-delete_all_jobs(v2)
+delete_all(v2.jobs)
 
 org = get_or_create(v2.organizations, name='cmurders murder inc.')
 inv = get_or_create(org.related.inventories, name='cmurders murdertown', organization=org)

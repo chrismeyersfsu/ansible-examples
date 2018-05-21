@@ -9,11 +9,27 @@ def get_or_create(obj, name='Default', **kwargs):
         print("Error, more than 1 results found for unique search.")
 
 
-def delete_all_jobs(v2):
+def delete_all(resource):
     while True:
-        jobs_req = v2.jobs.get(page_size=200)
-        if jobs_req['count'] == 0:
+        req = resource.get(page_size=200)
+        if req['count'] == 0:
             break
-        for j in jobs_req['results']:
-            j.delete()
+        map(lambda r: r.delete(), req['results'])
+
+def cancel_all(resource, block=False):
+    canceled = {}
+    while True:
+        req = resource.get(page_size=200, status='running')
+        if req['count'] == 0:
+            break
+
+        count = 0
+        for r in req['results']:
+            if r.id in canceled:
+                continue
+            canceled[r.id] = True
+            count += 1
+        if count == 0:
+            break
+
 
