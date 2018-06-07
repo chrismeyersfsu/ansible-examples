@@ -1,0 +1,14 @@
+- hosts: all
+  vars:
+    subnet: '172.18.0.0/16'
+  tasks:
+    - name: "Presume host to not belong to subnet"
+      set_fact:
+        is_subnet: False
+        cacheable: True
+
+    - name: "Figure out if host belongs to subnet"
+      set_fact:
+        is_subnet: True
+        cacheable: True
+      when: ansible_all_ipv4_addresses | ipaddr(subnet)

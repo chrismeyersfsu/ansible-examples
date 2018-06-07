@@ -1,0 +1,1 @@
+tools_awx_1 ansible_user=root ansible_connection=docker
