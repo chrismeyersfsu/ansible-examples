@@ -1,0 +1,23 @@
+---
+- name: test
+  connection: local
+  hosts: localhost
+#  gather_facts: Yes
+  tasks:
+    - name: run set_stats
+      set_stats:
+        data:
+          the_answer: 42
+        aggregate: no
+
+    - name: run set_stats
+      set_stats:
+        data:
+          the_answer: 100
+        aggregate: no
+      when: true
+
+    - name: display result
+      debug:
+        var: the_answer
+
