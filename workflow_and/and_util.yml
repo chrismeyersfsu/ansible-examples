@@ -1,0 +1,38 @@
+---
+- hosts: localhost
+  gather_facts: false
+  vars:
+    this_playbook_should_fail: false
+    job_id: "{{ lookup('env', 'JOB_ID') }}"
+    tower_base_url: "https://{{ lookup('env', 'TOWER_HOST') }}/api/v2"
+    tower_username: "{{ lookup('env', 'TOWER_USERNAME') }}"
+    tower_password: "{{ lookup('env', 'TOWER_PASSWORD') }}"
+    tower_verify_ssl: "{{ lookup('env', 'TOWER_VERIFY_SSL') }}"
+  tasks:
+    - name: "Get Workflow job id for which this job belongs"
+      shell: tower-cli job get {{ job_id }} -f json | jq ".related.source_workflow_job" | sed 's/\/"$//' | sed 's/.*\///'
+      register: workflow_job_id
+
+    - name: "Get Workflow node id for this job"
+      uri:
+        url: "{{ tower_base_url }}/workflow_job_nodes/?job_id={{ job_id }}"
+        validate_certs: "{{ tower_verify_ssl }}"
+        force_basic_auth: true
+        user: "{{ tower_username }}"
+        password: "{{ tower_password }}"
+      register: result
+
+    - name: "Get parent workflow nodes for this workflow node"
+      uri:
+        url: "{{ tower_base_url }}/workflow_job_nodes/?success_nodes={{ result.json.results[0].id }}"
+        validate_certs: "{{ tower_verify_ssl }}"
+        force_basic_auth: true
+        user: "{{ tower_username }}"
+        password: "{{ tower_password }}"
+      register: result
+
+    - name: "Fail this playbook if a parent node failed"
+      fail:
+        msg: "Parent workflow node {{ item }} failed"
+      when: "item.summary_fields.job.status == 'failed'"
+      loop: "{{ result.json.results }}"
