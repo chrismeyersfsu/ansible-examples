@@ -7,7 +7,8 @@ from ansible.module_utils.basic import AnsibleModule
 def main():
     results = dict(
         changed=False,
-        source=return_hello_world,
+        source=return_hello_world()
+    )
     AnsibleModule(argument_spec=dict()).exit_json(**results)
 
 
