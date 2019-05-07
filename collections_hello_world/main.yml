@@ -1,0 +1,17 @@
+- hosts: all
+  gather_facts: false
+  tasks:
+    - debug:
+        msg: "I am host '{{ inventory_hostname }}'"
+
+- hosts: localhost
+  gather_facts: false
+  tasks:
+    - redhat.cmeyers.my_action:
+    - redhat.cmeyers.my_module:
+    - debug:
+        msg: "my lookup is {{ lookup('redhat.cmeyers.my_lookup') }}"
+    - debug:
+        msg: "{{ 'my_filter' | redhat.cmeyers.my_filter }}"
+  roles:
+    - redhat.cmeyers.my_role
