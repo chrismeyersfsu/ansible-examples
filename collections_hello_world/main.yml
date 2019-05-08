@@ -1,8 +1,17 @@
 - hosts: all
   gather_facts: false
+  vars:
+    ansible_connection: redhat.cmeyers.my_connection
+    ansible_my_connection_connectionvar: 'from_play'
   tasks:
     - debug:
         msg: "I am host '{{ inventory_hostname }}'"
+
+    - raw: echo 'hello world'
+      register: connection_out
+
+    - debug:
+        msg: "connection plugin test {{ connection_out.stdout }}"
 
 - hosts: localhost
   gather_facts: false
