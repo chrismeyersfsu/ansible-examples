@@ -14,7 +14,7 @@
         msg: "connection plugin test {{ connection_out.stdout }}"
 
 - hosts: localhost
-  gather_facts: false
+  gather_facts: true
   tasks:
     - redhat.cmeyers.my_action:
     - redhat.cmeyers.my_module:
@@ -22,5 +22,10 @@
         msg: "my lookup is {{ lookup('redhat.cmeyers.my_lookup') }}"
     - debug:
         msg: "{{ 'my_filter' | redhat.cmeyers.my_filter }}"
+    - stat:
+        path: "fact_cache/localhost"
+      register: st
+    - debug:
+        msg: "Fact cache localhost file has a size of {{ st.stat.size }}"
   roles:
     - redhat.cmeyers.my_role
