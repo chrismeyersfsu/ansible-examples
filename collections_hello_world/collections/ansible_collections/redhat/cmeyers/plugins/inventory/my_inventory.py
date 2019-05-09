@@ -7,6 +7,7 @@ __metaclass__ = type
 DOCUMENTATION = '''
     inventory: my_inventory
     short_description: Add a single host
+    description: This plugin adds a single host specified by the hostname option
     options:
       plugin:
         description: plugin name (must be my_inventory)
@@ -52,4 +53,3 @@ class InventoryModule(BaseInventoryPlugin):
         # self.inventory.add_group()...
         # self.inventory.add_child()...
         # self.inventory.set_variable()..
-
