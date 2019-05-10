@@ -44,10 +44,11 @@ class InventoryModule(BaseInventoryPlugin, Cacheable):
         results = {}
         if cache:
             cache = self.get_option('cache')
-            try:
-                results = self._cache[cache_key]
-            except KeyError:
-                populate_cache = True
+            if cache:
+                try:
+                    results = self._cache[cache_key]
+                except KeyError:
+                    populate_cache = True
 
         if not config_data.get('hostname'):
             raise AnsibleParserError("hostname was not specified")

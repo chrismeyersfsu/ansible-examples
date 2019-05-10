@@ -1,0 +1,4 @@
+plugin: redhat.cmeyers.my_inventory
+hostname: 'my_host_cached'
+cache_plugin: redhat.cmeyers.my_cache
+cache: yes
