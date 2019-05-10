@@ -56,15 +56,9 @@ class InventoryModule(BaseInventoryPlugin, Cacheable):
             results['host'] = config_data.get('hostname')
             results['variables'] = {'foo': 'bar'}
 
-<<<<<<< HEAD
-        # self.inventory.add_group()...
-        # self.inventory.add_child()...
-        # self.inventory.set_variable()..
-=======
         self.inventory.add_host(results['host'], 'all')
         for k, v in results['variables'].items():
             self.inventory.set_variable(results['host'], k, v)
 
         if cache and populate_cache:
             self._cache[cache_key] = results
->>>>>>> add inventory + cache
