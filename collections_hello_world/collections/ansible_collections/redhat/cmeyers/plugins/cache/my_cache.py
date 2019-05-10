@@ -53,12 +53,20 @@ class CacheModule(BaseFileCacheModule):
     A caching module backed by json files.
     """
 
+    def __init__(self):
+        import pdb
+        pdb.set_trace()
+
     def _load(self, filepath):
+        import pdb
+        pdb.set_trace()
         # Valid JSON is always UTF-8 encoded.
         with codecs.open(filepath, 'r', encoding='utf-8') as f:
             return json.load(f, cls=AnsibleJSONDecoder)
 
     def _dump(self, value, filepath):
+        import pdb
+        pdb.set_trace()
         with codecs.open(filepath, 'w', encoding='utf-8') as f:
             f.write(json.dumps(value, cls=AnsibleJSONEncoder, sort_keys=True, indent=4))
 
