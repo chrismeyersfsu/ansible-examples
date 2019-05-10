@@ -1,5 +1,5 @@
 - hosts: all
-  gather_facts: false
+  gather_facts: true
   tasks:
     - name: set a fact man
       set_fact:

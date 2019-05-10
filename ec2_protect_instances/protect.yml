@@ -3,9 +3,10 @@
   gather_facts: false
   vars:
     employee_name: "cmeyers"
-    termination_protection: yes
+    termination_protection: no
     ec2_filters:
-      "tag:Ice": "jenkins-nightly-tower-cluster-release_3.3.0-ansible-stable-2.3"
+      "tag:Ice": "jenkins-nightly-tower-cluster-haproxy-ssl-devel-ansible-stable-2.7"
+      "instance-state-name": "running"
 
   tasks:
     - name: Find instances

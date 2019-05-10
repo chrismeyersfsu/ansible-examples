@@ -6,11 +6,14 @@ west1
 west2
 
 [instance_group_east]
-us1
-east1
-east2
+us1 cluster_host_identifier='us1_son'
+east1 cluster_host_identifier='east1_son'
+east2 cluster_host_identifier='east2_son'
 
 [instance_group_west]
 us1
 west1
 west2
+
+[all:vars]
+rabbitmq_host='blah'
