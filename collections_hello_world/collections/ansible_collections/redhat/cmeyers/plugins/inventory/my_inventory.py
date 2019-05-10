@@ -8,6 +8,8 @@ DOCUMENTATION = '''
     inventory: my_inventory
     short_description: Add a single host
     description: This plugin adds a single host specified by the hostname option
+    extends_documentation_fragment:
+        - inventory_cache
     options:
       plugin:
         description: plugin name (must be my_inventory)
@@ -19,37 +21,50 @@ DOCUMENTATION = '''
 
 from ansible.errors import AnsibleParserError
 from ansible.plugins.inventory import BaseInventoryPlugin, Cacheable
+from ansible.utils.display import Display
+
+display = Display()
 
 
-class InventoryModule(BaseInventoryPlugin):
+class InventoryModule(BaseInventoryPlugin, Cacheable):
 
     NAME = 'my_inventory'
 
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         super(InventoryModule, self).__init__()
 
         self._hosts = set()
 
-    def verify_file(self, path):
-        ''' Verify if file is usable by this plugin, base does minimal accessibility check '''
-
-        if not path.endswith('my_inventory.yml'):
-            return False
-        return super(InventoryModule, self).verify_file(path)
-
     def parse(self, inventory, loader, path, cache=None):
-
         super(InventoryModule, self).parse(inventory, loader, path)
 
-        config_data = loader.load_from_file(path, cache=False)
-        host_to_add = config_data.get('hostname')
+        config_data = loader.load_from_file(path, cache=cache)
+        cache_key = self.get_cache_key(path)
+        populate_cache = False
+        results = {}
+        if cache:
+            cache = self.get_option('cache')
+            try:
+                results = self._cache[cache_key]
+            except KeyError:
+                populate_cache = True
 
-        if not host_to_add:
+        if not config_data.get('hostname'):
             raise AnsibleParserError("hostname was not specified")
 
-        # this is where the magic happens
-        self.inventory.add_host(host_to_add, 'all')
+        if not results:
+            results['host'] = config_data.get('hostname')
+            results['variables'] = {'foo': 'bar'}
 
+<<<<<<< HEAD
         # self.inventory.add_group()...
         # self.inventory.add_child()...
         # self.inventory.set_variable()..
+=======
+        self.inventory.add_host(results['host'], 'all')
+        for k, v in results['variables'].items():
+            self.inventory.set_variable(results['host'], k, v)
+
+        if cache and populate_cache:
+            self._cache[cache_key] = results
+>>>>>>> add inventory + cache
