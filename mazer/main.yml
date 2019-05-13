@@ -1,5 +1,4 @@
 - hosts: localhost
   gather_facts: false
   roles:
-    - geerlingguy.nginx
     - chrismeyersfsu.ansible_content_example.my_role
