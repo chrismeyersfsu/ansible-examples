@@ -1,0 +1,5 @@
+- shell: "dd if=/dev/urandom bs=1024 count={{ item }}"
+  register: my_str
+
+- debug:
+    msg: "{{ my_str }}"
