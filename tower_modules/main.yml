@@ -1,0 +1,9 @@
+---
+- hosts: localhost
+  gather_facts: false
+  collections:
+    - chrismeyersfsu.tower_modules
+  tasks:
+    - tower_organization:
+        name: "Foo"
+        state: present
