@@ -1,0 +1,5 @@
+- hosts: localhost
+  tasks:
+    - set_stats:
+        data:
+          hello: "world"

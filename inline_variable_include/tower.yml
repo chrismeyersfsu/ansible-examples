@@ -1,0 +1,12 @@
+---
+- hosts: localhost
+  gather_facts: false
+  tasks:
+    - tower_inventory:
+        tower_host: 'https://127.0.0.1:8043'
+        tower_username: 'admin'
+        tower_password: 'admin'
+        tower_verify_ssl: false
+        organization: 'a'
+        name: 'a'
+        variables: "{{ lookup('file', 'vars.yml') }}"

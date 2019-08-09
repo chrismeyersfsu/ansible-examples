@@ -1,0 +1,8 @@
+- hosts: tower
+  gather_facts: false
+  vars:
+    fetch_from: "/tmp/query_log/*"
+  tasks:
+    - fetch:
+        src: "{{ fetch_from }}"
+        dest: "res/"

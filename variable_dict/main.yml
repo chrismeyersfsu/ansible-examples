@@ -1,0 +1,13 @@
+---
+- hosts: localhost
+  gather_facts: false
+  vars:
+    map:
+      foo: "bar"
+      foobar: "foobar"
+    key: "foo"
+  tasks:
+    - name: "debug"
+      debug:
+        msg: "{{ map[key] }}"
+

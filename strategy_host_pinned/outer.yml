@@ -1,0 +1,14 @@
+---
+- hosts: all
+  strategy: host_pinned
+  tasks:
+    - name: Outer
+      include_tasks: inner.yml
+      loop:
+        - 1
+        - 2
+        - 3
+        - 4
+        - 5
+      loop_control:
+        loop_var: outer_item

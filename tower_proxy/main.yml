@@ -1,0 +1,7 @@
+- hosts: "tower"
+  sudo: true
+  tasks:
+    - template:
+        src: lb.py
+        dest: "/etc/tower/conf.d/lb.py"
+    - shell: "ansible-tower-service restart"

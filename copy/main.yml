@@ -1,0 +1,9 @@
+---
+- hosts: tower
+  gather_facts: false
+  become: true
+  tasks:
+    - copy:
+        src: query_logger.py
+        dest: /etc/tower/conf.d/query_logger.py
+    - shell: ansible-tower-service restart

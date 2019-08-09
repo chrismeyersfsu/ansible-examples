@@ -1,0 +1,12 @@
+- hosts: all
+  gather_facts: false
+  connection: local
+  pre_tasks:
+    - debug:
+        msg: "rabbitmq_host var {{ rabbitmq_host }}"
+  tasks:
+    - include_role:
+        name: a
+      vars:
+        cluster_host_identifier: "{{ rabbitmq_host|default(ansible_host) }}"
+

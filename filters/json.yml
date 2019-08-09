@@ -1,0 +1,17 @@
+---
+- hosts: localhost
+  gather_facts: false
+  vars:
+    my_var1:
+      metadata:
+        items:
+          - key: "ssh-keys"
+            value: "name:ssh-rsa foo"
+          - key: "foo"
+            value: "bar"
+    my_var2:
+      metadata:
+
+  tasks:
+    - debug:
+        msg: "{{ my_var1 | json_query('metadata.items') or [] | items2dict(key_name='key', value_name='value') }}"

@@ -1,0 +1,17 @@
+---
+- hosts: localhost
+  gather_facts: false
+  vars:
+    number_str: "5"
+  tasks:
+    - set_fact:
+        number_under_test: "{{ number_str | int }}"
+
+    - debug:
+        var: number_under_test
+
+    - assert:
+        that:
+          - 'number_under_test == "5"'
+          - 'number_under_test == 5'
+

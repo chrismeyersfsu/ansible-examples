@@ -1,0 +1,9 @@
+local1 ansible_connection=local
+local2 ansible_connection=local
+local3 ansible_connection=local
+local4 ansible_connection=local
+local5 ansible_connection=local
+local6 ansible_connection=local
+local7 ansible_connection=local
+local8 ansible_connection=local
+local9 ansible_connection=local

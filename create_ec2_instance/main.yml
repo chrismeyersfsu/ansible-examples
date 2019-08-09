@@ -1,0 +1,20 @@
+---
+- hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: create ec2 instance
+      ec2:
+        instance_type: m5.large
+        image: ami-9887c6e7 # centos7
+        group: splunk
+        region: us-east-1
+        vpc_subnet_id: subnet-a7063dfd
+        assign_public_ip: yes
+        key_name: Ansible_chris_meyers
+        instance_tags:
+          Name: cmeyers-runner-performance
+      register: ec2_create_vars
+
+    - name: Echo results
+      debug:
+        msg: "{{ ec2_create_vars }}"

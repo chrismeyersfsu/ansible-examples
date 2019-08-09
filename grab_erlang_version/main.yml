@@ -1,0 +1,19 @@
+- hosts: all
+  gather_facts: False
+  vars:
+    ansible_user: "ec2-user"
+  tasks:
+    - name: "Get erlang package version"
+      #shell: "yum list installed | grep rabbitmq-server"
+      shell: "yum list installed | grep erlang"
+      #shell: "/sbin/rabbitmqctl status | grep Erlang/OTP"
+      register: out
+      become: true
+
+    - debug:
+        msg: "{{ out.stdout }}"
+
+    - name: Get rabbitmq log files
+      fetch:
+        dest: "{{ playbook_dir }}/logs/"
+        src: "/var/log/tower/setup-2018-05-02-14:30:22.log"

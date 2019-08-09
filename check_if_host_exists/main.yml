@@ -1,0 +1,17 @@
+---
+- hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: print it
+      debug:
+        msg: "{{ hostvars.keys() }}"
+
+    - name: check
+      debug:
+        msg: Host does exist
+      when: "'haproxy' in hostvars.keys()"
+
+    - name: check
+      debug:
+        msg: Host does not exist
+      when: "'haproxy343' not in hostvars.keys()"

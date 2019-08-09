@@ -1,0 +1,6 @@
+- hosts: localhost
+  vars:
+    myvar: "{{ lookup('pipe', 'echo hey') }}"
+  tasks:
+    - debug:
+        msg: "my far is [{{ myvar }}]"

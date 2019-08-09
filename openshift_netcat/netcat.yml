@@ -1,0 +1,45 @@
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: netcat-debug
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: netcat-debug
+    spec:
+      containers:
+        - name: netcat-debug
+          image: chilcano/netcat:jessie
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8052
+          command: [netcat, '-l', '-p', '8052', '-v']
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: netcat-debug-svc
+  labels:
+    name: netcat-debug-svc
+spec:
+  type: "NodePort"
+  ports:
+    - name: http
+      port: 80
+      targetPort: 8052
+  selector:
+    name: netcat-debug
+
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: netcat-debug-svc
+spec:
+  backend:
+    serviceName: netcat-debug-svc
+    servicePort: 80
+

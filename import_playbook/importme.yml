@@ -1,0 +1,18 @@
+- hosts: localhost
+  gather_facts: false
+  tasks:
+    - shell: whoami
+
+- hosts: localhost
+  gather_facts: false
+  vars:
+    config_dynamic_user: 0
+  tasks:
+    - name: Get effective uid
+      command: id -u
+      register: uid
+
+    - name: Ensure user is root
+      fail: msg="UID on remote machine is {{ uid.stdout }} ({{ config_dynamic_user }} required). Check Ansible connection and become settings."
+      when: (uid.stdout | int) != config_dynamic_user
+ 

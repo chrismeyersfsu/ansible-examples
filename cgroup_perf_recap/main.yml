@@ -1,0 +1,26 @@
+---
+- hosts: localhost
+  tasks:
+    - name: "Get all files in the tmp dir"
+      find:
+        paths: /tmp/ansible-operator/
+        recurse: yes
+      register: tmp_files
+
+    - name: "Get a hash of each file"
+      stat:
+        path: "{{ item.path }}"
+        get_checksum: true
+        checksum_algorithm: "md5"
+      register: result_stats
+      with_items: "{{ tmp_files.files }}"
+
+    - debug:
+        msg: "{{ result_stats }}"
+
+    - name: "Log md5 hash"
+      lineinfile:
+        path: "/tmp/md5hash.log"
+        line: "{{ item.stat.checksum }}"
+        create: true
+      with_items: "{{ result_stats.results }}"

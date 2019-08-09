@@ -1,0 +1,14 @@
+- hosts: tower
+  gather_facts: false
+  vars:
+    grep_res_file: "/tmp/grep_results"
+    grep_from: "/tmp/query_log/*"
+  tasks:
+    - name: grep
+      shell: >
+        grep -n 'SELECT "main_host"."id", "main_host"."created", "main_host"."modified", "main_host"."description", "main_host"."created_by_id", "main_host"."modified_by_id", "main_host"."name", "main_host"."inventory_id", "main_host"."enabled", "main_host"."instance_id", "main_host"."variables", "main_host"."last_job_id", "main_host"."last_job_host_summary_id", "main_host"."has_active_failures", "main_host"."has_inventory_sources", "main_host"."ansible_facts", "main_host"."ansible_facts_modified", "main_host"."insights_system_id" FROM "main_host" WHERE' {{ grep_from }} | grep "@>" > {{ grep_res_file }}
+      failed_when: False
+
+    - fetch:
+        src: "{{ grep_res_file }}"
+        dest: "res/"

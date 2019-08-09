@@ -1,0 +1,6 @@
+- name: "Check for missing updates {{ outer_item }}"
+  shell: "echo hello"
+  loop:
+    - a
+    - b
+    - c

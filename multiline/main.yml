@@ -1,0 +1,9 @@
+- hosts: localhost
+  gather_facts: false
+  tasks:
+    - shell: >
+        ls
+        -al
+      register: results
+    - debug:
+        msg: "{{ results }}"

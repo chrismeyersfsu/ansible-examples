@@ -1,0 +1,5 @@
+- debug:
+    msg: "{{ ','.join(groups[item] | map('extract', hostvars, 'cluster_host_identifier') | list | select('defined')) }}"
+  run_once: True
+  with_items: "{{ groups }}"
+

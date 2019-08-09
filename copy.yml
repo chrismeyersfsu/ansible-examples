@@ -1,0 +1,14 @@
+---
+- hosts: tower
+  gather_facts: false
+  become: true
+  vars:
+    tower_src: "/var/lib/awx/venv/awx/lib/python3.6/site-packages/awx"
+  tasks:
+    - copy:
+        src: /home/meyers/ansible/awx/awx/main/expect/isolated_manager.py
+        dest: "{{tower_src}}/main/expect/isolated_manager.py"
+    - copy:
+        src: /home/meyers/ansible/awx/awx/main/tasks.py
+        dest: "{{tower_src}}/main/tasks.py"
+    - shell: ansible-tower-service restart

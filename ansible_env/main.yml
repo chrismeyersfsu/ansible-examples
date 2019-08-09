@@ -1,0 +1,16 @@
+- hosts: all
+  gather_facts: false
+  tasks:
+    - name: "Hyper local"
+      debug:
+        msg: "Local: {{ lookup('env', 'HELLO2') }}"
+
+    - name: "Remote machine env"
+      debug:
+        msg: "{{ ansible_env.HELLO }}"
+
+    - name: "Remote"
+      debug:
+        msg: "Remote: {{ ansible_env.HELLO }}"
+
+    - shell: "echo {{ ansible_env.HELLO }}"

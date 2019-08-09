@@ -1,0 +1,19 @@
+---
+- hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: create ec2 instance
+      ec2:
+        instance_type: t2.medium
+        image: ami-011b3ccf1bd6db744 # RHEL-7.6_HVM_GA-20181017-x86_64-0-Hourly2-GP2
+        group: splunk
+        region: us-east-1
+        vpc_subnet_id: subnet-a7063dfd
+        assign_public_ip: yes
+        instance_tags:
+          Name: splunk-cmeyers
+      register: ec2_create_vars
+
+    - name: Echo results
+      debug:
+        msg: "{{ ec2_create_vars }}"

@@ -1,0 +1,21 @@
+---
+- hosts: localhost
+  gather_facts: false
+  vars:
+    #job_id: "{{ lookup('env', 'JOB_ID') }}"
+    job_id: 76
+    tower_base_url: "https://localhost/api/v2"
+    tower_username: "admin"
+    tower_password: "admin"
+  tasks:
+    - name: "Get Workflow job id for which this job belongs"
+      shell: tower-cli job get {{ job_id }} -f json | jq ".related.source_workflow_job" | sed 's/\/"$//' | sed 's/.*\///'
+      register: workflow_job_id
+
+    - name: "Get Workflow node id for this job"
+      shell: tower-cli node list --query job_id {{ job_id }} -f json
+      register: result
+
+    - name: dkjfld
+      debug:
+        msg: "{{ result.stdout }}"
