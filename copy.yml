@@ -12,3 +12,4 @@
         src: /home/meyers/ansible/awx/awx/main/tasks.py
         dest: "{{tower_src}}/main/tasks.py"
     - shell: ansible-tower-service restart
+
