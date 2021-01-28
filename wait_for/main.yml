@@ -1,0 +1,9 @@
+- hosts: localhost
+  gather_facts: false
+  vars:
+    sleep_timeout: 5400
+  tasks:
+   - name: sleep for 5400 seconds and continue with play
+     wait_for:
+       timeout: "{{ sleep_timeout }}"
+     delegate_to: localhost
