@@ -1,0 +1,13 @@
+---
+- name: Output environment variables of the control node
+  hosts: localhost
+  gather_facts: no  # We don't need remote facts
+
+  tasks:
+    - name: Get environment variables of the control node
+      command: env
+      register: control_node_env
+
+    - name: Display environment variables
+      debug:
+        msg: "{{ control_node_env.stdout_lines }}"

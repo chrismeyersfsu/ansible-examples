@@ -1,0 +1,9 @@
+---
+- name: Output all environment variables
+  hosts: localhost
+  gather_facts: yes
+
+  tasks:
+    - name: Display all environment variables
+      debug:
+        var: ansible_env

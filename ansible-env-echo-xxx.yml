@@ -1,0 +1,14 @@
+---
+- name: Output specific environment variables
+  hosts: localhost
+  gather_facts: yes
+
+  tasks:
+    - name: Showing specific env var
+      debug:
+        msg: "{{ item }} = {{ lookup('ansible.builtin.env', item, default='Not Found') }}"
+      loop:
+        - AWS_ACCESS_KEY_ID
+        - AWS_SECRET_ACCESS_KEY
+
+
