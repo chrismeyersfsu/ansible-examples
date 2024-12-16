@@ -2,7 +2,7 @@
 - hosts: all
   gather_facts: false
   tasks:
-   - name: "wait for yahoo to come up"
+   - name: "wait for httpbin to come up"
      uri:
        url: "http://httpbin.org/"
        status_code: 200
