@@ -1,0 +1,12 @@
+---
+- hosts: all
+  gather_facts: false
+  tasks:
+   - name: "wait for yahoo to come up"
+     uri:
+       url: "http://yahoo.com/"
+       status_code: 200
+     register: result
+     until: result.status == 200
+     retries: 60
+     delay: 1
