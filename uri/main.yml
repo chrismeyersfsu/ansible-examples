@@ -4,5 +4,5 @@
   tasks:
    - name: "wait for httpbin to come up"
      uri:
-       url: "http://httpbin.org"
+       url: "http://neverssl.com"
        status_code: 200
